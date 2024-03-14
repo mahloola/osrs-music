@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/osrs-music/static/css/main.1b6fe8f4.css",
-    "main.js": "/osrs-music/static/js/main.a455a821.js",
-    "index.html": "/osrs-music/index.html",
-    "main.1b6fe8f4.css.map": "/osrs-music/static/css/main.1b6fe8f4.css.map",
-    "main.a455a821.js.map": "/osrs-music/static/js/main.a455a821.js.map"
+    "main.css": "/static/css/main.1b6fe8f4.css",
+    "main.js": "/static/js/main.6e829926.js",
+    "index.html": "/index.html",
+    "main.1b6fe8f4.css.map": "/static/css/main.1b6fe8f4.css.map",
+    "main.6e829926.js.map": "/static/js/main.6e829926.js.map"
   },
   "entrypoints": [
     "static/css/main.1b6fe8f4.css",
-    "static/js/main.a455a821.js"
+    "static/js/main.6e829926.js"
   ]
 }
