@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import RunescapeMap from "./RunescapeMap";
 import { FaDiscord, FaGithub, FaDonate } from "react-icons/fa";
 import { getRandomSong } from "./utils/getSong";
-import GuessCountComponent from "./components/guessCount";
+import { userGuessed } from "./MapClickHandler";
 
 // TODO:
 // rs-stylize the volume control and the start button. overlay volume control on top left of map vertically
@@ -16,13 +16,16 @@ import GuessCountComponent from "./components/guessCount";
 const initialSong = getRandomSong();
 
 function App() {
+  let replaying = false;
   const audioRef = useRef(null);
   const sourceRef = useRef(null);
   const [currentSong, setCurrentSong] = useState(initialSong);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [guessCount, setGuessCount] = useState(0);
   const [guessResult, setGuessResult] = useState(0);
   const [startedGame, setStartedGame] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
-  let next = false;
+
   const playSong = (songName) => {
     const src = `https://oldschool.runescape.wiki/images/${songName
       .trim()
@@ -32,6 +35,16 @@ function App() {
     audioRef.current.play();
   };
 
+  
+
+  const restartGame = () => {
+    if (guessCount > 4) {
+      replaying = true;
+      setGuessCount(0);
+      setTotalPoints(0);     
+      setStartedGame(false);
+    }
+  }
   return (
     <div className="App">
       <div>
@@ -46,7 +59,7 @@ function App() {
             paddingBottom: "5vh",
           }}
         >
-          <div
+          {/* <div
             className="statistics"
             style={{ display: startedGame ? "block" : "none" }}
           >
@@ -62,7 +75,7 @@ function App() {
                 <td style={{textAlign: "right"}}>4</td>
               </tr>
             </table>
-          </div>
+          </div> */}
           <div
             className="ui-box"
             style={{ display: startedGame ? "block" : "none" }}
@@ -71,16 +84,19 @@ function App() {
               {/* guess button */}
               <Button
                 className="button"
-                variant={guessResult == 0 ? "info" : "secondary"}
+                variant={guessResult == 0 ? "info" : "success"}
                 disabled={guessResult == 0 ? true : false}
                 onClick={() => {
                   const newSongName = getRandomSong();
                   setCurrentSong(newSongName);
                   playSong(newSongName);
-                  setResultVisible(true);
+                  setGuessCount(guessCount+1);
+                  setTotalPoints(totalPoints + guessResult)
+                  restartGame();
+                  userGuessed();           
                 }}
               >
-                {guessResult == 0 ? "Place your pin on the map" : "Skip"}
+                {guessResult == 0 ? "Place your pin on the map" : `Guess ${guessCount}/5 | Total: ${totalPoints.toLocaleString()}`}
               </Button>
               <audio controls id="audio" ref={audioRef}>
                 <source id="source" ref={sourceRef} type="audio/ogg"></source>
@@ -122,6 +138,7 @@ function App() {
             setGuessResult={setGuessResult}
             setResultVisible={setResultVisible}
             resultVisible={resultVisible}
+            userGuessed={userGuessed}
           />
         </div>
         {!startedGame && (
@@ -133,7 +150,7 @@ function App() {
               playSong(currentSong);
             }}
           >
-            Start Game
+            {replaying == true ? "Replay" : "Start Game"}
           </Button>
         )}
 
