@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.fdd6eb94.css",
-    "main.js": "/static/js/main.4ac2ce78.js",
+    "main.js": "/static/js/main.93a0d892.js",
     "static/media/runescape.ttf": "/static/media/runescape.4ca02f96457fdc55273f.ttf",
     "index.html": "/index.html",
     "static/media/osrs_map_zoom_in.webp": "/static/media/osrs_map_zoom_in.d59826e7d7433e173d10.webp",
     "static/media/osrs_map_zoom_out.webp": "/static/media/osrs_map_zoom_out.950098c2b55d03dc99e8.webp",
     "main.fdd6eb94.css.map": "/static/css/main.fdd6eb94.css.map",
-    "main.4ac2ce78.js.map": "/static/js/main.4ac2ce78.js.map"
+    "main.93a0d892.js.map": "/static/js/main.93a0d892.js.map"
   },
   "entrypoints": [
     "static/css/main.fdd6eb94.css",
-    "static/js/main.4ac2ce78.js"
+    "static/js/main.93a0d892.js"
   ]
 }
